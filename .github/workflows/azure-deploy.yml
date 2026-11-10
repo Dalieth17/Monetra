@@ -1,0 +1,37 @@
+# Despliegue manual a Azure App Service (F1).
+# Requiere configurar en GitHub > Settings > Secrets and variables > Actions:
+#   - AZURE_WEBAPP_NAME: nombre del App Service
+#   - AZURE_WEBAPP_PUBLISH_PROFILE: contenido del publish profile descargado del portal de Azure
+# La cadena de conexión (Azure SQL / MySQL) y Jwt:Secret se configuran como
+# Application Settings en el propio App Service, nunca en el repositorio.
+name: Deploy to Azure App Service
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Test (Gate 2 antes de desplegar)
+        run: dotnet test backend/Monetra.sln --configuration Release
+
+      - name: Publish
+        run: dotnet publish backend/src/Monetra.Api/Monetra.Api.csproj --configuration Release --output ./publish
+
+      - name: Deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
