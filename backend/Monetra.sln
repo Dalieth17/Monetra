@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99A99FBF-E603-431D-8617-4BE78ACDE64B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monetra.Domain", "src\Monetra.Domain\Monetra.Domain.csproj", "{B6AC0407-7692-4F6B-85D9-37283E019DCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monetra.Application", "src\Monetra.Application\Monetra.Application.csproj", "{A9ECD179-6AA2-4AE9-B0F5-C7F8D3917889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monetra.Infrastructure", "src\Monetra.Infrastructure\Monetra.Infrastructure.csproj", "{52CAAF2C-D877-4B86-9CEA-765AFFE7E680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monetra.Api", "src\Monetra.Api\Monetra.Api.csproj", "{8E4EABA2-3CF6-4D2B-BDF8-055B3C780A82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F3BC3B8D-FA71-4860-ABAA-23C66D8FB572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monetra.UnitTests", "tests\Monetra.UnitTests\Monetra.UnitTests.csproj", "{A0A77826-026B-4B25-9BCE-2FF0E5C3F197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monetra.IntegrationTests", "tests\Monetra.IntegrationTests\Monetra.IntegrationTests.csproj", "{543F4500-05DB-45F4-B7B8-605F435FE5E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6AC0407-7692-4F6B-85D9-37283E019DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AC0407-7692-4F6B-85D9-37283E019DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6AC0407-7692-4F6B-85D9-37283E019DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6AC0407-7692-4F6B-85D9-37283E019DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9ECD179-6AA2-4AE9-B0F5-C7F8D3917889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9ECD179-6AA2-4AE9-B0F5-C7F8D3917889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9ECD179-6AA2-4AE9-B0F5-C7F8D3917889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9ECD179-6AA2-4AE9-B0F5-C7F8D3917889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52CAAF2C-D877-4B86-9CEA-765AFFE7E680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52CAAF2C-D877-4B86-9CEA-765AFFE7E680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52CAAF2C-D877-4B86-9CEA-765AFFE7E680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52CAAF2C-D877-4B86-9CEA-765AFFE7E680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E4EABA2-3CF6-4D2B-BDF8-055B3C780A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E4EABA2-3CF6-4D2B-BDF8-055B3C780A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E4EABA2-3CF6-4D2B-BDF8-055B3C780A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E4EABA2-3CF6-4D2B-BDF8-055B3C780A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A77826-026B-4B25-9BCE-2FF0E5C3F197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A77826-026B-4B25-9BCE-2FF0E5C3F197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A77826-026B-4B25-9BCE-2FF0E5C3F197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A77826-026B-4B25-9BCE-2FF0E5C3F197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543F4500-05DB-45F4-B7B8-605F435FE5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543F4500-05DB-45F4-B7B8-605F435FE5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543F4500-05DB-45F4-B7B8-605F435FE5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543F4500-05DB-45F4-B7B8-605F435FE5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6AC0407-7692-4F6B-85D9-37283E019DCB} = {99A99FBF-E603-431D-8617-4BE78ACDE64B}
+		{A9ECD179-6AA2-4AE9-B0F5-C7F8D3917889} = {99A99FBF-E603-431D-8617-4BE78ACDE64B}
+		{52CAAF2C-D877-4B86-9CEA-765AFFE7E680} = {99A99FBF-E603-431D-8617-4BE78ACDE64B}
+		{8E4EABA2-3CF6-4D2B-BDF8-055B3C780A82} = {99A99FBF-E603-431D-8617-4BE78ACDE64B}
+		{A0A77826-026B-4B25-9BCE-2FF0E5C3F197} = {F3BC3B8D-FA71-4860-ABAA-23C66D8FB572}
+		{543F4500-05DB-45F4-B7B8-605F435FE5E3} = {F3BC3B8D-FA71-4860-ABAA-23C66D8FB572}
+	EndGlobalSection
+EndGlobal
