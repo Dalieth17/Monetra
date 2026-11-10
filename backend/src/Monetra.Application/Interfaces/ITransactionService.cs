@@ -9,3 +9,4 @@ public interface ITransactionService
     Task<TransactionDto> CreateTransactionAsync(int userId, CreateTransactionDto request, CancellationToken cancellationToken = default);
     Task DeleteTransactionAsync(int transactionId, int userId, CancellationToken cancellationToken = default);
 }
+

@@ -49,3 +49,4 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         return handler.WriteToken(token);
     }
 }
+

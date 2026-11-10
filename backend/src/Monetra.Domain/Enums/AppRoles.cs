@@ -7,3 +7,4 @@ public static class AppRoles
     public const string Soporte = "Soporte";
     public const string Auditor = "Auditor";
 }
+

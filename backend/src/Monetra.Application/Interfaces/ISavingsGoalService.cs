@@ -9,3 +9,4 @@ public interface ISavingsGoalService
     Task<SavingsGoalDto> DepositAsync(int goalId, int userId, DepositSavingsGoalDto request, CancellationToken cancellationToken = default);
     Task DeleteGoalAsync(int goalId, int userId, CancellationToken cancellationToken = default);
 }
+

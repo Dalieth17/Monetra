@@ -79,3 +79,4 @@ public class ValidatorTests
         Assert.Contains(result.Errors, e => e.PropertyName == "CurrencyCode");
     }
 }
+

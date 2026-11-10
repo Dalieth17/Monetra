@@ -15,3 +15,4 @@ public class LoginRequestValidator : AbstractValidator<LoginRequestDto>
             .NotEmpty().WithMessage("La contraseña es obligatoria.");
     }
 }
+

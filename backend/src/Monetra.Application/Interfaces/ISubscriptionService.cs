@@ -9,3 +9,4 @@ public interface ISubscriptionService
     Task<SubscriptionDto> ToggleStatusAsync(int subscriptionId, int userId, CancellationToken cancellationToken = default);
     Task DeleteSubscriptionAsync(int subscriptionId, int userId, CancellationToken cancellationToken = default);
 }
+

@@ -17,3 +17,4 @@ public class DashboardSummaryDto
     public List<AccountDto> Accounts { get; set; } = new();
     public List<TransactionDto> RecentTransactions { get; set; } = new();
 }
+

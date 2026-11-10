@@ -25,3 +25,4 @@ public class MarketController : ControllerBase
         return Ok(ApiResponse<MarketRateDto>.SuccessResult(rate));
     }
 }
+

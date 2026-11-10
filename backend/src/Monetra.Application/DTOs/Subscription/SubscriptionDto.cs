@@ -21,3 +21,4 @@ public class CreateSubscriptionDto
     public string BillingCycle { get; set; } = "Monthly"; // Monthly, Annual, Weekly
     public DateTime NextPaymentDate { get; set; }
 }
+

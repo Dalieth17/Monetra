@@ -6,3 +6,4 @@ public interface IDashboardService
 {
     Task<DashboardSummaryDto> GetSummaryAsync(int userId, string baseCurrency = "COP", CancellationToken cancellationToken = default);
 }
+

@@ -27,3 +27,4 @@ public class DashboardController : ControllerBase
         return Ok(ApiResponse<DashboardSummaryDto>.SuccessResult(summary));
     }
 }
+

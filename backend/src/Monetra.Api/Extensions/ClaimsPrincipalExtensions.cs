@@ -16,3 +16,4 @@ public static class ClaimsPrincipalExtensions
         throw new UnauthorizedException("Identificador de usuario inválido en el token de autenticación.");
     }
 }
+

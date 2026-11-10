@@ -20,3 +20,4 @@ public class CreateTransactionValidator : AbstractValidator<CreateTransactionDto
             .MaximumLength(255).WithMessage("La descripción no puede exceder los 255 caracteres.");
     }
 }
+

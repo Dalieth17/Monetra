@@ -7,3 +7,4 @@ public class Role
 
     public ICollection<User> Users { get; set; } = new List<User>();
 }
+

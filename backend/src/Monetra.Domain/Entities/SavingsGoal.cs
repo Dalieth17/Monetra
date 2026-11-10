@@ -11,3 +11,4 @@ public class SavingsGoal
     public DateTime Deadline { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+

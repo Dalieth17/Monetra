@@ -45,3 +45,4 @@ cd src/Monetra.Api
 dotnet run
 ```
 La API estará disponible con documentación Swagger interactiva.
+

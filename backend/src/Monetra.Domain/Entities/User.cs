@@ -15,3 +15,4 @@ public class User
     public ICollection<SavingsGoal> SavingsGoals { get; set; } = new List<SavingsGoal>();
     public ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 }
+

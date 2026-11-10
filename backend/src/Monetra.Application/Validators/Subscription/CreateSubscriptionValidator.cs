@@ -21,3 +21,4 @@ public class CreateSubscriptionValidator : AbstractValidator<CreateSubscriptionD
             .WithMessage("Ciclo de cobro inválido. Opciones válidas: Monthly, Annual, Weekly.");
     }
 }
+

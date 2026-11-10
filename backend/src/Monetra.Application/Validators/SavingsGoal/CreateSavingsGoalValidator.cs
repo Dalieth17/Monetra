@@ -18,3 +18,4 @@ public class CreateSavingsGoalValidator : AbstractValidator<CreateSavingsGoalDto
             .GreaterThan(DateTime.UtcNow.Date).WithMessage("La fecha límite debe ser futura.");
     }
 }
+

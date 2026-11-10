@@ -10,3 +10,4 @@ public interface IAccountService
     Task<AccountDto> UpdateAccountAsync(int accountId, int userId, UpdateAccountDto request, CancellationToken cancellationToken = default);
     Task DeleteAccountAsync(int accountId, int userId, CancellationToken cancellationToken = default);
 }
+

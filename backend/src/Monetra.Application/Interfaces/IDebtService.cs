@@ -9,3 +9,4 @@ public interface IDebtService
     Task<DebtDto> RecordPaymentAsync(int debtId, int userId, RecordDebtPaymentDto request, CancellationToken cancellationToken = default);
     Task DeleteDebtAsync(int debtId, int userId, CancellationToken cancellationToken = default);
 }
+

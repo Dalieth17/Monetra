@@ -6,3 +6,4 @@ public interface IAiCategorizationService
 {
     Task<CategorySuggestionDto> SuggestCategoryAsync(string description, CancellationToken cancellationToken = default);
 }
+

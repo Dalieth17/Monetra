@@ -9,3 +9,4 @@ public class MarketRateDto
     public bool IsStale { get; set; }
     public string WarningMessage { get; set; } = string.Empty;
 }
+

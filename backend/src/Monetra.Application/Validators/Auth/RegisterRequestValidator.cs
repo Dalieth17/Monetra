@@ -21,3 +21,4 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequestDto>
             .MinimumLength(6).WithMessage("La contraseña debe tener al menos 6 caracteres.");
     }
 }
+

@@ -25,3 +25,4 @@ public class AiController : ControllerBase
         return Ok(ApiResponse<CategorySuggestionDto>.SuccessResult(suggestion));
     }
 }
+

@@ -79,3 +79,4 @@ public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.False(string.IsNullOrEmpty(loginContent.Data.Token));
     }
 }
+

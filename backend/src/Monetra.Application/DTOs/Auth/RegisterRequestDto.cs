@@ -7,3 +7,4 @@ public class RegisterRequestDto
     public string Password { get; set; } = string.Empty;
     public string? Role { get; set; } = "Usuario";
 }
+

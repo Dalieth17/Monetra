@@ -11,3 +11,4 @@ public class CreateTransactionDto
     public DateTime? Date { get; set; }
     public string Description { get; set; } = string.Empty;
 }
+

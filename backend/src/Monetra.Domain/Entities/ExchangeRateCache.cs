@@ -9,3 +9,4 @@ public class ExchangeRateCache
     public DateTime LastUpdatedAt { get; set; } = DateTime.UtcNow;
     public string Source { get; set; } = "YahooFinance";
 }
+

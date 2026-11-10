@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Monetra</string>
+    <string name="login_title">Bienvenido a Monetra</string>
+    <string name="login_subtitle">Toma el control soberano de tu dinero</string>
+    <string name="register_title">Crear Cuenta</string>
+    <string name="dashboard_title">Monetra</string>
+    <string name="add_transaction_title">Añadir Movimiento</string>
+</resources>
+
