@@ -11,15 +11,24 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection") 
-            ?? "Server=localhost;Database=monetra_db;User=root;Password=;";
+        if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+        {
+            var databaseName = configuration["InMemoryDatabaseName"] ?? "MonetraTestDb";
+            services.AddDbContext<MonetraDbContext>(options =>
+                options.UseInMemoryDatabase(databaseName));
+        }
+        else
+        {
+            var connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? "Server=localhost;Database=monetra_db;User=root;Password=;";
 
-        var serverVersion = ServerVersion.AutoDetect(connectionString);
-        services.AddDbContext<MonetraDbContext>(options =>
-            options.UseMySql(connectionString, serverVersion, mySqlOptions =>
-            {
-                mySqlOptions.EnableRetryOnFailure(3, TimeSpan.FromSeconds(5), null);
-            }));
+            var serverVersion = ServerVersion.AutoDetect(connectionString);
+            services.AddDbContext<MonetraDbContext>(options =>
+                options.UseMySql(connectionString, serverVersion, mySqlOptions =>
+                {
+                    mySqlOptions.EnableRetryOnFailure(3, TimeSpan.FromSeconds(5), null);
+                }));
+        }
 
         services.AddHttpClient<IMarketService, MarketService>();
 

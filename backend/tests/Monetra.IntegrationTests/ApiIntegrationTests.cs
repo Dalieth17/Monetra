@@ -7,11 +7,11 @@ using Xunit;
 
 namespace Monetra.IntegrationTests;
 
-public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
+public class ApiIntegrationTests : IClassFixture<MonetraWebApplicationFactory>
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    private readonly MonetraWebApplicationFactory _factory;
 
-    public ApiIntegrationTests(WebApplicationFactory<Program> factory)
+    public ApiIntegrationTests(MonetraWebApplicationFactory factory)
     {
         _factory = factory;
     }
