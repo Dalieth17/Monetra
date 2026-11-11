@@ -16,6 +16,10 @@
     --outline: rgba(11, 25, 44, 0.25);
     --muted: rgba(11, 25, 44, 0.6);
     --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    /* Gráficas: serie validada contra la superficie de la tarjeta en cada modo */
+    --chart-series: #2a78d6;
+    --chart-deemphasis: #898781;
+    --chart-grid: #e1e0d9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,6 +30,8 @@
         --on-surface: #FFFFFF;
         --outline: rgba(255, 255, 255, 0.3);
         --muted: rgba(255, 255, 255, 0.6);
+        --chart-series: #3987e5;
+        --chart-grid: rgba(255, 255, 255, 0.12);
     }
 }
 
@@ -251,3 +257,49 @@ body {
 }
 .switch input:checked + .track { background: var(--primary); }
 .switch input:checked + .track .thumb { left: 23px; }
+
+/* ---------- Mercado ---------- */
+.rate-tile .label { font-size: 11px; color: var(--muted); }
+.rate-tile .value { font-size: 28px; font-weight: 700; margin: 6px 0 2px; }
+
+.stock-card { padding: 0; overflow: hidden; }
+.stock-head {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    padding: 14px 16px; background: none; border: none; cursor: pointer;
+    color: var(--on-surface); font: inherit; text-align: left;
+}
+.stock-head:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+.stock-id { flex: 1; min-width: 0; }
+.stock-name { font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stock-spark { width: 84px; height: 32px; flex-shrink: 0; }
+.stock-figures { text-align: right; flex-shrink: 0; min-width: 112px; }
+.stock-price { font-size: 16px; font-weight: 600; white-space: nowrap; }
+.stock-delta {
+    display: flex; align-items: center; justify-content: flex-end;
+    font-size: 12px; color: var(--muted); white-space: nowrap;
+}
+.stock-delta svg { width: 18px; height: 18px; flex-shrink: 0; }
+.delta-up svg { fill: var(--income); }
+.delta-down svg { fill: var(--expense); }
+.delta-flat svg { fill: var(--chart-deemphasis); }
+
+.stock-detail { padding: 0 16px 14px; }
+.chart-wrap { position: relative; touch-action: pan-y; outline: none; }
+.chart-wrap:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 6px; }
+.chart-wrap svg { display: block; width: 100%; height: auto; }
+.chart-wrap text { font-size: 10px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.chart-tooltip {
+    position: absolute; top: 0; pointer-events: none;
+    background: var(--primary-dark); color: #fff; border-radius: 6px;
+    padding: 6px 8px; font-size: 11px; line-height: 1.35; white-space: nowrap;
+    box-shadow: var(--shadow); transform: translateX(-50%);
+}
+.chart-tooltip strong { display: block; font-size: 13px; }
+.chart-table { margin-top: 8px; font-size: 12px; }
+.chart-table summary { cursor: pointer; color: var(--primary); padding: 4px 0; }
+.chart-table table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+.chart-table th, .chart-table td {
+    text-align: left; padding: 4px 0; border-bottom: 1px solid var(--chart-grid);
+    font-variant-numeric: tabular-nums;
+}
+.chart-table th:last-child, .chart-table td:last-child { text-align: right; }

@@ -81,6 +81,10 @@ const Api = {
     suggestCategory: (description) =>
         apiCall('GET', `/api/ai/suggest-category?description=${encodeURIComponent(description)}`),
 
+    // Market
+    getUsdCopRate: () => apiCall('GET', '/api/market/usd-cop'),
+    getStocks: () => apiCall('GET', '/api/market/stocks'),
+
     // Debts
     getDebts: () => apiCall('GET', '/api/debts'),
     createDebt: (debt) => apiCall('POST', '/api/debts', debt),

@@ -266,6 +266,7 @@ async function loadDashboard() {
                     <button class="chip" id="chip-debts">${icon('creditCard', 18)} Deudas</button>
                     <button class="chip" id="chip-savings">${icon('savings', 18)} Metas</button>
                     <button class="chip" id="chip-subs">${icon('subscriptions', 18)} Suscripciones</button>
+                    <button class="chip" id="chip-market">${icon('chart', 18)} Mercado</button>
                 </div>
                 <h2 class="section-title">Movimientos Recientes</h2>
                 ${transactions}
@@ -274,6 +275,7 @@ async function loadDashboard() {
         $('#chip-debts').addEventListener('click', () => navigate('#/debts'));
         $('#chip-savings').addEventListener('click', () => navigate('#/savings'));
         $('#chip-subs').addEventListener('click', () => navigate('#/subscriptions'));
+        $('#chip-market').addEventListener('click', () => navigate('#/market'));
     } catch (e) {
         body.innerHTML = errorBanner(e.message);
         $('#retry-btn').addEventListener('click', loadDashboard);
