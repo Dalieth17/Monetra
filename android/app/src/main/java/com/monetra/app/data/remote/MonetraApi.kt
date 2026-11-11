@@ -14,6 +14,7 @@ import com.monetra.app.data.remote.dto.DebtDto
 import com.monetra.app.data.remote.dto.DepositSavingsGoalRequest
 import com.monetra.app.data.remote.dto.LoginRequest
 import com.monetra.app.data.remote.dto.MarketRateDto
+import com.monetra.app.data.remote.dto.StockQuoteDto
 import com.monetra.app.data.remote.dto.RecordDebtPaymentRequest
 import com.monetra.app.data.remote.dto.RegisterRequest
 import com.monetra.app.data.remote.dto.SavingsGoalDto
@@ -69,6 +70,9 @@ interface MonetraApi {
     // --- Market ---
     @GET("api/market/usd-cop")
     suspend fun getUsdCopRate(): ApiResponse<MarketRateDto>
+
+    @GET("api/market/stocks")
+    suspend fun getStocks(): ApiResponse<List<StockQuoteDto>>
 
     // --- Debts ---
     @GET("api/debts")

@@ -14,4 +14,15 @@ object CurrencyFormatter {
         }
         return "$${formatter.format(amount)} $currencyCode"
     }
+
+    fun formatDelta(change: BigDecimal, changePercent: BigDecimal): String {
+        val sign = when (change.signum()) {
+            1 -> "+"
+            -1 -> "−"
+            else -> ""
+        }
+        val amount = String.format(Locale.US, "%.2f", change.abs())
+        val percent = String.format(Locale.US, "%.2f", changePercent.abs())
+        return "$sign$amount ($sign$percent%)"
+    }
 }

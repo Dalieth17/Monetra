@@ -10,11 +10,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.automirrored.filled.TrendingDown
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.Add
@@ -62,6 +65,7 @@ fun DashboardScreen(
     onOpenDebts: () -> Unit,
     onOpenSavings: () -> Unit,
     onOpenSubscriptions: () -> Unit,
+    onOpenMarket: () -> Unit,
     onLogout: () -> Unit,
     viewModel: DashboardViewModel = viewModel(factory = DashboardViewModel.Factory)
 ) {
@@ -189,7 +193,10 @@ fun DashboardScreen(
                 }
 
                 item {
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        modifier = Modifier.horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
                         AssistChip(
                             onClick = onOpenDebts,
                             label = { Text("Deudas") },
@@ -204,6 +211,11 @@ fun DashboardScreen(
                             onClick = onOpenSubscriptions,
                             label = { Text("Suscripciones") },
                             leadingIcon = { Icon(Icons.Default.Subscriptions, null, Modifier.size(18.dp)) }
+                        )
+                        AssistChip(
+                            onClick = onOpenMarket,
+                            label = { Text("Mercado") },
+                            leadingIcon = { Icon(Icons.AutoMirrored.Filled.ShowChart, null, Modifier.size(18.dp)) }
                         )
                     }
                 }

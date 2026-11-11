@@ -10,6 +10,7 @@ import com.monetra.app.data.remote.MonetraApi
 import com.monetra.app.data.repository.AuthRepository
 import com.monetra.app.data.repository.DashboardRepository
 import com.monetra.app.data.repository.DebtRepository
+import com.monetra.app.data.repository.MarketRepository
 import com.monetra.app.data.repository.SavingsGoalRepository
 import com.monetra.app.data.repository.SubscriptionRepository
 import com.monetra.app.data.repository.TransactionRepository
@@ -55,6 +56,7 @@ class AppContainer(context: Context) {
     val debtRepository = DebtRepository(api, database.debtDao())
     val savingsGoalRepository = SavingsGoalRepository(api, database.savingsGoalDao())
     val subscriptionRepository = SubscriptionRepository(api, database.subscriptionDao())
+    val marketRepository = MarketRepository(api)
 
     val syncManager = SyncManager(api, database.transactionDao(), networkMonitor)
 }
