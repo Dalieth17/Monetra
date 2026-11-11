@@ -108,7 +108,8 @@ public class TransactionService : ITransactionService
         Category? category = null;
         if (request.CategoryId.HasValue)
         {
-            category = await _context.Categories.FindAsync([request.CategoryId.Value], cancellationToken);
+            category = await _context.Categories.FindAsync([request.CategoryId.Value], cancellationToken)
+                ?? throw new NotFoundException("Categoría", request.CategoryId.Value);
         }
 
         var transaction = new Transaction

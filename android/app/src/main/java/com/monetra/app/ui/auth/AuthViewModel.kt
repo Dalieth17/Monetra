@@ -51,6 +51,11 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         }
     }
 
+    fun enterDemo() {
+        authRepository.enterDemo()
+        _uiState.update { it.copy(isAuthenticated = true) }
+    }
+
     fun register() {
         val state = _uiState.value
         if (!state.canRegister) return

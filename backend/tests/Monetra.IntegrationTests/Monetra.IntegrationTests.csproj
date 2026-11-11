@@ -26,5 +26,10 @@
     <ProjectReference Include="..\..\src\Monetra.Api\Monetra.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\Monetra.UnitTests\TestSupport\StubHttpMessageHandler.cs" Link="TestSupport\StubHttpMessageHandler.cs" />
+    <Compile Include="..\Monetra.UnitTests\TestSupport\YahooChart.cs" Link="TestSupport\YahooChart.cs" />
+  </ItemGroup>
+
 </Project>
 

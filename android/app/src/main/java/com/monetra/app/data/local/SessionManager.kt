@@ -18,6 +18,13 @@ class SessionManager(context: Context) {
 
     fun isLoggedIn(): Boolean = !token.isNullOrEmpty()
 
+    val isDemo: Boolean get() = prefs.getBoolean(KEY_DEMO, false)
+
+    fun enterDemo() {
+        prefs.edit { putBoolean(KEY_DEMO, true) }
+        saveSession("demo", 1, "Invitado Demo", "demo@monetra.com", "Usuario")
+    }
+
     fun saveSession(token: String, userId: Int, name: String, email: String, role: String) {
         prefs.edit {
             putString(KEY_TOKEN, token)
@@ -51,5 +58,6 @@ class SessionManager(context: Context) {
         const val KEY_ROLE = "user_role"
         const val KEY_LAST_RATE = "last_usd_cop_rate"
         const val KEY_LAST_RATE_AT = "last_usd_cop_rate_at"
+        const val KEY_DEMO = "demo_mode"
     }
 }

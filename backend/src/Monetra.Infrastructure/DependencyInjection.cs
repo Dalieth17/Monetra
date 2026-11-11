@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Monetra.Application.Interfaces;
 using Monetra.Infrastructure.Persistence;
 using Monetra.Infrastructure.Services;
@@ -31,6 +32,16 @@ public static class DependencyInjection
         }
 
         services.AddHttpClient<IMarketService, MarketService>();
+
+        services.AddMemoryCache();
+        services.TryAddSingleton(TimeProvider.System);
+        services.AddOptions<StockMarketOptions>();
+        services.AddHttpClient<IStockService, StockService>(client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(5);
+            // El proveedor rechaza peticiones sin un User-Agent de navegador.
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (compatible; Monetra/1.0)");
+        });
 
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IAuthService, AuthService>();

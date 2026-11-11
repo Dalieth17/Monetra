@@ -9,8 +9,15 @@ import com.monetra.app.data.remote.safeApiCall
 
 class AuthRepository(
     private val api: MonetraApi,
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
+    private val onEnterDemo: () -> Unit = {}
 ) {
+
+    /** Activa el modo demostración con datos de ejemplo frescos, sin red. */
+    fun enterDemo() {
+        onEnterDemo()
+        sessionManager.enterDemo()
+    }
 
     suspend fun login(email: String, password: String): Result<AuthResponse> {
         return safeApiCall { api.login(LoginRequest(email.trim(), password)) }

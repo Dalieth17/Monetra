@@ -1,6 +1,8 @@
 /* Cliente de la API Monetra (.NET 8) - espejo de MonetraApi.kt */
 
-const API_BASE_URL = localStorage.getItem('monetra_api_url') || 'http://localhost:5127';
+// Por defecto se usa el mismo origen (/api), que nginx redirige a la API en Docker.
+// Para desarrollo fuera de Docker: localStorage.setItem('monetra_api_url', 'http://localhost:5127').
+const API_BASE_URL = localStorage.getItem('monetra_api_url') || '';
 
 const Session = {
     get token() { return localStorage.getItem('monetra_token'); },
@@ -17,8 +19,14 @@ const Session = {
     },
     get lastRate() { return parseFloat(localStorage.getItem('monetra_last_rate') || '0'); },
     get lastRateAt() { return localStorage.getItem('monetra_last_rate_at') || ''; },
+    get isDemo() { return localStorage.getItem('monetra_demo') === '1'; },
+    enterDemo() {
+        const auth = DemoApi.enter();
+        localStorage.setItem('monetra_demo', '1');
+        this.save(auth);
+    },
     clear() {
-        ['monetra_token', 'monetra_name', 'monetra_email'].forEach(k => localStorage.removeItem(k));
+        ['monetra_token', 'monetra_name', 'monetra_email', 'monetra_demo'].forEach(k => localStorage.removeItem(k));
     }
 };
 
@@ -66,7 +74,7 @@ function defaultHttpMessage(code) {
     }
 }
 
-const Api = {
+const RealApi = {
     // Auth
     register: (name, email, password) => apiCall('POST', '/api/auth/register', { name, email, password }),
     login: (email, password) => apiCall('POST', '/api/auth/login', { email, password }),
@@ -80,6 +88,10 @@ const Api = {
     // AI
     suggestCategory: (description) =>
         apiCall('GET', `/api/ai/suggest-category?description=${encodeURIComponent(description)}`),
+
+    // Market
+    getUsdCopRate: () => apiCall('GET', '/api/market/usd-cop'),
+    getStocks: () => apiCall('GET', '/api/market/stocks'),
 
     // Debts
     getDebts: () => apiCall('GET', '/api/debts'),
@@ -99,3 +111,15 @@ const Api = {
     toggleSubscription: (id) => apiCall('PATCH', `/api/subscriptions/${id}/toggle`),
     deleteSubscription: (id) => apiCall('DELETE', `/api/subscriptions/${id}`)
 };
+
+// En modo demostración cada llamada se resuelve con DemoApi (datos en memoria),
+// sin tocar la red; en modo normal va al backend real. Los sitios de llamada
+// (Api.getDashboard, etc.) no cambian.
+const Api = new Proxy({}, {
+    get(_, prop) {
+        if (Session.isDemo && typeof DemoApi[prop] === 'function') {
+            return DemoApi[prop].bind(DemoApi);
+        }
+        return RealApi[prop];
+    }
+});

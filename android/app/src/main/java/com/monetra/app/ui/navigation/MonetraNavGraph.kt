@@ -8,6 +8,7 @@ import com.monetra.app.ui.auth.LoginScreen
 import com.monetra.app.ui.auth.RegisterScreen
 import com.monetra.app.ui.dashboard.DashboardScreen
 import com.monetra.app.ui.debts.DebtsScreen
+import com.monetra.app.ui.market.MarketScreen
 import com.monetra.app.ui.savings.SavingsGoalsScreen
 import com.monetra.app.ui.subscriptions.SubscriptionsScreen
 import com.monetra.app.ui.transactions.AddTransactionScreen
@@ -20,6 +21,7 @@ object Routes {
     const val DEBTS = "debts"
     const val SAVINGS = "savings"
     const val SUBSCRIPTIONS = "subscriptions"
+    const val MARKET = "market"
 }
 
 @Composable
@@ -57,6 +59,7 @@ fun MonetraNavGraph(isLoggedIn: Boolean) {
                 onOpenDebts = { navController.navigate(Routes.DEBTS) },
                 onOpenSavings = { navController.navigate(Routes.SAVINGS) },
                 onOpenSubscriptions = { navController.navigate(Routes.SUBSCRIPTIONS) },
+                onOpenMarket = { navController.navigate(Routes.MARKET) },
                 onLogout = {
                     navController.navigate(Routes.LOGIN) {
                         popUpTo(Routes.DASHBOARD) { inclusive = true }
@@ -79,6 +82,10 @@ fun MonetraNavGraph(isLoggedIn: Boolean) {
 
         composable(Routes.SUBSCRIPTIONS) {
             SubscriptionsScreen(onNavigateBack = { navController.popBackStack() })
+        }
+
+        composable(Routes.MARKET) {
+            MarketScreen(onNavigateBack = { navController.popBackStack() })
         }
     }
 }
