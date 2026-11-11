@@ -36,3 +36,6 @@ Thumbs.db
 *~
 .vscode/
 
+
+# Variables de entorno locales (no versionar)
+.env

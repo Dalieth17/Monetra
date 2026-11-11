@@ -1,6 +1,8 @@
 /* Cliente de la API Monetra (.NET 8) - espejo de MonetraApi.kt */
 
-const API_BASE_URL = localStorage.getItem('monetra_api_url') || 'http://localhost:5127';
+// Por defecto se usa el mismo origen (/api), que nginx redirige a la API en Docker.
+// Para desarrollo fuera de Docker: localStorage.setItem('monetra_api_url', 'http://localhost:5127').
+const API_BASE_URL = localStorage.getItem('monetra_api_url') || '';
 
 const Session = {
     get token() { return localStorage.getItem('monetra_token'); },

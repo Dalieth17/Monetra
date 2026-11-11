@@ -102,18 +102,36 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Auto-migrate or ensure database exists on startup
+// Inicializa la base de datos al arrancar.
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<MonetraDbContext>();
-    try
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+    if (dbContext.Database.IsRelational())
     {
-        dbContext.Database.EnsureCreated();
+        // En MySQL (Docker) se aplican las migraciones. El contenedor de la base
+        // puede tardar en aceptar conexiones, así que se reintenta con espera.
+        const int maxAttempts = 10;
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            try
+            {
+                dbContext.Database.Migrate();
+                logger.LogInformation("Migraciones aplicadas correctamente.");
+                break;
+            }
+            catch (Exception ex) when (attempt < maxAttempts)
+            {
+                logger.LogWarning(ex, "La base de datos no está lista (intento {Attempt}/{Max}). Reintentando en 3s...", attempt, maxAttempts);
+                Thread.Sleep(3000);
+            }
+        }
     }
-    catch (Exception ex)
+    else
     {
-        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Error al inicializar la base de datos.");
+        // Proveedor en memoria (pruebas de integración): no admite migraciones.
+        dbContext.Database.EnsureCreated();
     }
 }
 

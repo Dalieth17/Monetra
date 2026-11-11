@@ -1,0 +1,48 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: monetra-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-monetra_root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-monetra_db}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - monetra_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD:-monetra_root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  api:
+    build:
+      context: ./backend
+    container_name: monetra-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
+      ConnectionStrings__DefaultConnection: "Server=db;Port=3306;Database=${MYSQL_DATABASE:-monetra_db};User=root;Password=${MYSQL_ROOT_PASSWORD:-monetra_root};"
+      Jwt__Secret: ${JWT_SECRET:-MonetraSuperSecureKeyForProductionChangeMe256BitsMinimumLength!}
+      Jwt__Issuer: MonetraApi
+      Jwt__Audience: MonetraMobileApp
+    ports:
+      - "${API_PORT:-5127}:5127"
+
+  web:
+    build:
+      context: ./web
+    container_name: monetra-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "${WEB_PORT:-8080}:80"
+
+volumes:
+  monetra_db_data:
