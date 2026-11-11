@@ -105,6 +105,20 @@ body {
     background: none; border: none; color: var(--primary);
     font-size: 14px; font-weight: 500; cursor: pointer; padding: 10px;
 }
+.btn-demo {
+    width: 100%; height: 48px;
+    background: transparent; color: var(--primary);
+    border: 1.5px solid var(--primary); border-radius: 24px;
+    font-size: 16px; font-weight: 500; cursor: pointer;
+}
+.btn-demo:hover { background: rgba(0, 168, 107, 0.08); }
+.demo-divider {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%; margin: 14px 0; color: var(--muted); font-size: 12px;
+}
+.demo-divider::before, .demo-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--outline);
+}
 
 /* ---------- Cards ---------- */
 .card {

@@ -63,6 +63,14 @@ const State = {
     dashboard: null
 };
 
+// Las cuentas de los diálogos (abonar/depositar) salen del dashboard cacheado.
+// Al entrar directo a /debts o /savings (deep link), aún no está, así que se carga.
+async function ensureAccounts() {
+    if (!State.dashboard) {
+        try { State.dashboard = await Api.getDashboard(State.baseCurrency); } catch (_) { /* las vistas muestran su propio error */ }
+    }
+}
+
 // ---------- Router ----------
 const routes = {
     '#/login': renderLogin,
@@ -107,7 +115,15 @@ function renderLogin() {
             <p class="inline-error hidden" id="form-error"></p>
             <button class="btn-primary" id="login-btn" disabled>Iniciar Sesión</button>
             <button class="btn-text" id="go-register">¿No tienes cuenta? Regístrate</button>
+            <div class="demo-divider"><span>o</span></div>
+            <button class="btn-demo" id="demo-btn">Entrar en modo demostración</button>
+            <p class="hint" style="text-align:center">Explora la app con datos de ejemplo, sin necesidad de servidor.</p>
         </div>`;
+
+    $('#demo-btn').addEventListener('click', () => {
+        Session.enterDemo();
+        navigate('#/dashboard');
+    });
 
     const email = $('#email'), password = $('#password'), btn = $('#login-btn');
     const isEmailValid = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
@@ -434,6 +450,7 @@ function renderDebts() {
 async function loadDebts() {
     const body = $('#list-body');
     try {
+        await ensureAccounts();
         const debts = await Api.getDebts();
         body.innerHTML = `<div class="content">${
             debts.length === 0
@@ -573,6 +590,7 @@ function renderSavings() {
 async function loadSavings() {
     const body = $('#list-body');
     try {
+        await ensureAccounts();
         const goals = await Api.getSavingsGoals();
         body.innerHTML = `<div class="content">${
             goals.length === 0
