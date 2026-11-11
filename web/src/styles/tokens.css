@@ -1,0 +1,53 @@
+:root {
+  /* Identidad de marca Monetra (coherente con la app Android). */
+  --ink: #0b192c;          /* navy profundo: texto y superficies oscuras */
+  --emerald: #00a86b;      /* verde de marca: acción y positivo */
+  --emerald-dark: #00935d;
+  --teal: #1e3e62;         /* acento secundario: barra lateral */
+
+  --canvas: #eef1f5;       /* lienzo gris-azulado frío (no cream) */
+  --surface: #ffffff;
+  --surface-2: #f7f9fb;
+
+  --text: #0b192c;
+  --text-soft: #51607a;    /* texto secundario */
+  --text-faint: #8a96ab;   /* texto terciario / ejes */
+  --line: #e2e7ee;         /* bordes finos */
+  --line-strong: #d2d9e3;
+
+  --income: #1f9d57;
+  --expense: #d64545;
+  --amber: #e0962f;
+
+  --chart: #2a78d6;        /* serie de gráfica (validada en claro) */
+  --chart-soft: #9bb7d8;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(11, 25, 44, 0.06), 0 1px 3px rgba(11, 25, 44, 0.05);
+  --shadow-md: 0 6px 20px rgba(11, 25, 44, 0.08);
+  --shadow-hero: 0 12px 34px rgba(11, 25, 44, 0.24);
+
+  --sidebar-w: 240px;
+  --font: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #0a1422;
+    --canvas: #0a1422;
+    --surface: #111f33;
+    --surface-2: #0d1a2b;
+    --text: #eaf0f8;
+    --text-soft: #a7b4c8;
+    --text-faint: #7686a0;
+    --line: #1f3047;
+    --line-strong: #27405c;
+    --chart: #4b93e6;
+    --chart-soft: #35557c;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4);
+    --shadow-hero: 0 12px 34px rgba(0, 0, 0, 0.5);
+  }
+}

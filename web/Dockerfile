@@ -1,14 +1,16 @@
-# Sirve la SPA de Monetra con nginx y redirige /api hacia el contenedor de la API.
-# Build context esperado: la carpeta web/.
+# Compila la SPA de React con Vite y la sirve con nginx, que además redirige
+# /api hacia el contenedor de la API. Build context esperado: la carpeta web/.
+
+# --- Etapa 1: build de producción con Node ---
+FROM node:22-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci || npm install
+COPY . .
+RUN npm run build
+
+# --- Etapa 2: servir los estáticos con nginx ---
 FROM nginx:1.27-alpine
-
-# Configuración del sitio (SPA + proxy /api).
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Archivos estáticos de la aplicación.
-COPY index.html /usr/share/nginx/html/
-COPY css/ /usr/share/nginx/html/css/
-COPY js/ /usr/share/nginx/html/js/
-COPY img/ /usr/share/nginx/html/img/
-
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

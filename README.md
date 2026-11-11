@@ -15,7 +15,7 @@ Monetra es una aplicación de finanzas personales diseñada para brindar soberan
 
 - **Backend:** C# / .NET 8 REST Web API con Clean Architecture (Domain, Application, Infrastructure, API).
 - **Base de Datos:** MySQL 8 con Entity Framework Core 8 (migraciones Code-First aplicadas al arranque).
-- **Sitio Web:** SPA servida por nginx, que además hace *reverse proxy* de `/api` hacia la API.
+- **Sitio Web:** SPA en React + Vite, servida por nginx (que además hace *reverse proxy* de `/api` hacia la API). Diseño responsivo con barra lateral en escritorio y navegación inferior en móvil.
 - **Frontend Móvil:** Android Nativo (Kotlin) con Room Database (Offline-first) y arquitectura MVVM.
 - **Seguridad:** Autenticación JWT HMAC-SHA256 y control de acceso basado en roles (RBAC: Usuario, Administrador, Soporte, Auditor).
 
@@ -32,9 +32,10 @@ Monetra/
 │   ├── src/                 # Api · Application · Domain · Infrastructure
 │   │   └── Monetra.Infrastructure/Persistence/Migrations/   # Migraciones EF Core
 │   └── tests/               # Pruebas unitarias e integración (xUnit)
-├── web/                     # Sitio web (SPA en JavaScript)
-│   ├── Dockerfile           # nginx que sirve la SPA
+├── web/                     # Sitio web (React + Vite)
+│   ├── Dockerfile           # Build de Node → nginx que sirve la SPA
 │   ├── nginx.conf           # Proxy /api → contenedor api
+│   ├── src/                 # Componentes, páginas y capa de datos (API real + demo)
 │   └── abrir-web.sh         # Arranque local de un clic (modo demo)
 ├── android/                 # App Android nativa (Kotlin, Compose, Room, Retrofit)
 ├── database/
@@ -82,7 +83,7 @@ Con el stack levantado, la API está en `http://<IP-de-tu-PC>:5127`. En el emula
 
 Tanto el sitio web como la app Android incluyen un botón **"Entrar en modo demostración"** en la pantalla de inicio: cargan datos de ejemplo en memoria y permiten recorrer toda la aplicación **sin necesidad de levantar el backend**.
 
-- **Web:** ejecuta `./web/abrir-web.sh` (o sirve la carpeta `web/` con cualquier servidor estático) y pulsa el botón.
+- **Web:** ejecuta `./web/abrir-web.sh` (arranca el servidor de desarrollo de Vite y abre el navegador) y pulsa el botón.
 - **Android:** ejecuta la app en el emulador y pulsa el botón.
 
 ---
