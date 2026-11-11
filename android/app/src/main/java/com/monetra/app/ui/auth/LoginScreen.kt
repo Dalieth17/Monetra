@@ -17,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -109,5 +110,18 @@ fun LoginScreen(
         TextButton(onClick = onNavigateToRegister) {
             Text("¿No tienes cuenta? Regístrate")
         }
+
+        Spacer(Modifier.height(8.dp))
+        OutlinedButton(
+            onClick = viewModel::enterDemo,
+            modifier = Modifier.fillMaxWidth().height(48.dp)
+        ) {
+            Text("Entrar en modo demostración")
+        }
+        Text(
+            "Explora la app con datos de ejemplo, sin necesidad de servidor.",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
+        )
     }
 }
